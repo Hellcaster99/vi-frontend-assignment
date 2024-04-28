@@ -9,6 +9,17 @@ import {
     StopwatchIcon,
 } from "@radix-ui/react-icons";
 
+export const checks = [
+    {
+        value: true,
+        label: "checked"
+    },
+    {
+        value: false,
+        label: "unchecked"
+    }
+]
+
 export const labels = [
     {
         value: "bug",

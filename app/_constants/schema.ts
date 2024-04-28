@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const taskSchema = z.object({
+    checked: z.boolean(),
     id: z.string(),
     title: z.string(),
     status: z.string(),

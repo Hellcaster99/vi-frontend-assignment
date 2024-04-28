@@ -9,6 +9,7 @@ import { taskSchema } from "../_constants/schema";
 
 const generateData = () => {
     return Array.from({ length: 100 }, () => ({
+        checked: false,
         id: `TASK-${faker.number.int({ min: 1000, max: 9999 })}`,
         title: faker.hacker.phrase().replace(/^./, (letter) => letter.toUpperCase()),
         status: faker.helpers.arrayElement(statuses).value,

@@ -1,15 +1,37 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import { type ColumnDef } from "@tanstack/react-table";
-import { labels, priorities, statuses } from "../_constants/metadata";
+import { labels, priorities, statuses, checks } from "../_constants/metadata";
 import { type Task } from "../_constants/schema";
+import { useEffect } from "react";
 
 export const columns: Array<ColumnDef<Task>> = [
+    {
+        accessorKey: "checked",
+        header: ({ table, column }) => {
+        return <input
+                    type="checkbox"
+                    checked={table.getIsAllRowsSelected()}
+                    onChange={table.getToggleAllRowsSelectedHandler()}
+                />
+        },
+        cell: ({ row }) =>{
+            return <input
+                        type="checkbox"
+                        checked={row.getIsSelected()}
+                        disabled={!row.getCanSelect()}
+                        onChange={row.getToggleSelectedHandler()}
+                    />
+        },
+        enablePinning: true,
+    },
     {
         accessorKey: "id",
         header: ({ column }) => <span>Task</span>,
         cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
+        enablePinning: true
     },
     {
         accessorKey: "title",
